@@ -1,0 +1,55 @@
+<!-- Mini Cart Drawer -->
+<div id="mini-cart-drawer" class="mini-hidden">
+  <div class="mini-overlay"></div>
+  <div class="mini-drawer">
+    <div class="mini-header">
+      <h2>Your Cart</h2>
+      <button id="mini-close-drawer">×</button>
+    </div>
+    <div class="mini-cart-content">
+      <p>Your cart is empty.</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  #mini-cart-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: flex-end;
+    pointer-events: none;
+  }
+  .mini-hidden {
+    display: none;
+  }
+  .mini-overlay {
+    flex: 1;
+    background: rgba(0,0,0,0.4);
+    pointer-events: auto;
+  }
+  .mini-drawer {
+    width: 320px;
+    background: #fff;
+    height: 100%;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    pointer-events: auto;
+    position: relative;
+  }
+  #mini-cart-drawer.open .mini-drawer {
+    transform: translateX(0);
+  }
+  .mini-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+  }
+  .mini-cart-content {
+    padding: 1rem;
+  }
+</style>
