@@ -10,7 +10,6 @@
       const productId = Number(bundleEl.dataset.products);
       if (!productId) return;
 
-      // Step 1: Add product to cart
       fetch('/cart/add.js', {
         method: 'POST',
         headers: {
@@ -22,7 +21,6 @@
         })
       })
         .then(() => {
-          // Step 2: Fetch sections for cart UI
           return fetch('/?sections=cart-drawer,cart-icon-bubble');
         })
         .then(res => res.json())
@@ -34,19 +32,6 @@
             cartDrawer.renderContents({ sections });
             cartDrawer.open();
           }, 3000);
-
-            // Wait until next animation frame for DOM to settle, then safely open drawer
-            // requestAnimationFrame(() => {
-            //   const drawerContent =
-            //     cartDrawer.querySelector('#CartDrawer') ||
-            //     cartDrawer.querySelector('.drawer__inner');
-
-            //   if (drawerContent) {
-            //     cartDrawer.open(); // Safe manual open
-            //   } else {
-            //     console.log("CartDrawer content not found, not opening.");
-            //   }
-            // });
           }
         })
         .catch(err => {
