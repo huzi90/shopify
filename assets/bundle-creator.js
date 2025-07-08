@@ -33,6 +33,7 @@
             }           
           cartDrawer.classList.remove("is-empty");
             const img = document.querySelector(".cart-item__media");
+            console.log("img :", img)
 
         })
         .catch(err => {
