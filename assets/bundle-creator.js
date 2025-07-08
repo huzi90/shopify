@@ -39,7 +39,6 @@
                 cartDrawer.querySelector('.drawer__inner');
 
               if (drawerContent) {
-                cartDrawer.classList.remove("is-empty")
                 cartDrawer.open(); // Safe manual open
               } else {
                 console.log("CartDrawer content not found, not opening.");
