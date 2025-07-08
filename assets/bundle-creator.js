@@ -30,20 +30,36 @@
         .then(html => {
           const parser = new DOMParser();
           const doc = parser.parseFromString(html, 'text/html');
+
           const newCartDrawer = doc.querySelector('#CartDrawer');
           const currentCartDrawer = document.querySelector('cart-drawer');
+
+          const newCartCount = doc.querySelector('.cart-count');
+          const currentCartCount = document.querySelector('.cart-count');
 
           if (newCartDrawer && currentCartDrawer) {
             currentCartDrawer.innerHTML = newCartDrawer.innerHTML;
 
-            // Remove "is-empty" class from the live cart drawer if it exists
+            // Remove "is-empty" class if present
             currentCartDrawer.classList.remove("is-empty");
 
-            // Hide the empty message if it exists
+            // Hide empty message
             const emptyMessage = currentCartDrawer.querySelector('.drawer__inner-empty');
             if (emptyMessage) {
               emptyMessage.style.display = 'none';
             }
+
+            // Open the cart drawer (if you use Shopify's built-in drawer)
+            document.body.classList.add('js-drawer-open', 'cart-open');
+            const cartDrawerEl = document.querySelector('#CartDrawer');
+            if (cartDrawerEl) {
+              cartDrawerEl.classList.add('is-open');
+            }
+          }
+
+          // Update cart count
+          if (newCartCount && currentCartCount) {
+            currentCartCount.textContent = newCartCount.textContent;
           }
         })
         .catch(err => {
