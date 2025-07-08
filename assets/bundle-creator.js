@@ -28,15 +28,15 @@
           const cartDrawer = document.querySelector('cart-drawer');
 
           if (cartDrawer && typeof cartDrawer.renderContents === 'function') {
-          setTimeout(() => {
-            cartDrawer.renderContents({ sections });
-            cartDrawer.open();
-          }, 3000);
+            setTimeout(() => {
+              cartDrawer.renderContents({ sections });
+              cartDrawer.open();
+            }, 3000);
           }
         })
         .catch(err => {
-          console.error('Error updating cart drawer:', err)
-        })
-    })
-  })
-})()
+          console.error('Error updating cart drawer:', err);
+        });
+    });
+  });
+})();
