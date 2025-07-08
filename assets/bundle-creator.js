@@ -28,7 +28,7 @@
           if (cartDrawer && typeof cartDrawer.renderContents === 'function') {
             setTimeout(() => {
                 cartDrawer.renderContents({ sections });
-                }, 3000);
+                }, 50);
           }
         })
         .catch(err => {
