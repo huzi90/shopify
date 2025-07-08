@@ -23,7 +23,7 @@
         .then(() => {
           return fetch('/?sections=cart-drawer,cart-icon-bubble');
         })
-        .then(res => res.JSON())
+        .then(res => res.json())
         .then((sections) => {
           console.log("Fetched sections:", sections);
           const cartDrawer = document.querySelector('cart-drawer');
