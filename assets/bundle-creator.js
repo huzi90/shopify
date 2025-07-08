@@ -36,9 +36,7 @@
           if (newCartDrawer && currentCartDrawer) {
             currentCartDrawer.innerHTML = newCartDrawer.innerHTML;
              newCartDrawer.classList.remove("is-empty");
-          document.querySelectorAll('.drawer__inner-empty').forEach(el => {
-            el.style.display = 'none';
-            });
+          document.querySelector('.drawer__inner-empty').style.display = 'none';
           }
         })
         .catch(err => {
