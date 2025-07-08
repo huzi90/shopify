@@ -49,18 +49,13 @@
               emptyMessage.style.display = 'none';
             }
 
-            // Open the cart drawer (if you use Shopify's built-in drawer)
-            document.body.classList.add('js-drawer-open', 'cart-open');
-            const cartDrawerEl = document.querySelector('#CartDrawer');
-            if (cartDrawerEl) {
-              cartDrawerEl.classList.add('is-open');
-            }
           }
 
           // Update cart count
           if (newCartCount && currentCartCount) {
             currentCartCount.textContent = newCartCount.textContent;
           }
+          document.getElementById("cart-icon-bubble")?.click()
         })
         .catch(err => {
           console.error("Error adding to cart", err);
