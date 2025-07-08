@@ -8,6 +8,11 @@
 {% endif %}
 <button class="bundleBtn" aria-label="create bundle">create bundle</button>
 </div>
+{% stylesheet %}
+  cart-drawer div:empty{
+    display: flex !important;
+  }
+{% endstylesheet %}
 {% schema %}
 {
     "name": "Bundle",
