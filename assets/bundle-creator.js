@@ -7,7 +7,7 @@
       const bundleEl = document.getElementById("bundleCreator");
       if (!bundleEl) return;
 
-      const productId = Number(bundleEl.dataset.products);
+      const productId = bundleEl.dataset.products;
       if (!productId) return;
 
       fetch('/cart/add.js', {
@@ -26,13 +26,11 @@
         .then(res => res.json())
         .then((sections) => {
           const cartDrawer = document.querySelector('cart-drawer');
-
-          if (cartDrawer && typeof cartDrawer.renderContents === 'function') {
             setTimeout(() => {
               cartDrawer.renderContents({ sections });
               cartDrawer.open();
             }, 3000);
-          }
+          
         })
         .catch(err => {
           console.error('Error updating cart drawer:', err);
