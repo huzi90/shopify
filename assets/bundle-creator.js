@@ -1,7 +1,10 @@
 (() => {
   document.addEventListener("DOMContentLoaded", () => {
-    const container = document.getElementById("bundleCreator");
+    const container = document.getElementById("bundleCreator")
     const productId = document.querySelector('[data-products]')
-    console.log(productId);
+    const Btn = document.querySelector(".bundleBtn")
+    Btn.addEventListener("click",()=>{
+        console.log(productId);
+    })
   });
 })();
