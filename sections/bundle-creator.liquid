@@ -1,12 +1,12 @@
 <div class="main-bundle">
 {% if section.settings.product %}
 {% render 'bundle-creator', product: section.settings.product  %}
-<button class="bundleBtn" aria-label="create bundle">create bundle</button>
 {% else %}
-<h3>
-    Select a product
-</h3>
+    <h3>
+        Select a product
+    </h3>
 {% endif %}
+<button class="bundleBtn" aria-label="create bundle">create bundle</button>
 </div>
 {% schema %}
 {
