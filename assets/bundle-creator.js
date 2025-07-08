@@ -30,20 +30,23 @@
           const cartDrawer = document.querySelector('cart-drawer');
 
           if (cartDrawer && typeof cartDrawer.renderContents === 'function') {
+          setTimeout(() => {
             cartDrawer.renderContents({ sections });
+            cartDrawer.open();
+          }, 3000);
 
             // Wait until next animation frame for DOM to settle, then safely open drawer
-            requestAnimationFrame(() => {
-              const drawerContent =
-                cartDrawer.querySelector('#CartDrawer') ||
-                cartDrawer.querySelector('.drawer__inner');
+            // requestAnimationFrame(() => {
+            //   const drawerContent =
+            //     cartDrawer.querySelector('#CartDrawer') ||
+            //     cartDrawer.querySelector('.drawer__inner');
 
-              if (drawerContent) {
-                cartDrawer.open(); // Safe manual open
-              } else {
-                console.log("CartDrawer content not found, not opening.");
-              }
-            });
+            //   if (drawerContent) {
+            //     cartDrawer.open(); // Safe manual open
+            //   } else {
+            //     console.log("CartDrawer content not found, not opening.");
+            //   }
+            // });
           }
         })
         .catch(err => {
