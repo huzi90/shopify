@@ -28,7 +28,8 @@
           console.log("Fetched sections:", text);
           const cartDrawer = document.querySelector('cart-drawer');
             cartDrawer.renderContents({ sections });
-            cartDrawer.classList.remove("is-empty")         
+            cartDrawer.classList.remove("is-empty");
+            const img = document.querySelector(".cart-item__media");
         })
         .catch(err => {
           console.error('Error updating cart drawer:', err);
