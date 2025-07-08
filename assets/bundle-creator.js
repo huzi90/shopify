@@ -23,13 +23,17 @@
         .then(() => {
           return fetch('/?sections=cart-drawer,cart-icon-bubble');
         })
-        .then(res => res.text())
-        .then((text) => {
-          console.log("Fetched sections:", text);
+        .then(res => res.JSON())
+        .then((sections) => {
+          console.log("Fetched sections:", sections);
           const cartDrawer = document.querySelector('cart-drawer');
-            cartDrawer.renderContents({ sections });
-            cartDrawer.classList.remove("is-empty");
+          cartDrawer.renderContents({ sections });
+          if (!cartDrawer.classList.contains("active")) {
+              cartDrawer.classList.add("active");
+            }           
+          cartDrawer.classList.remove("is-empty");
             const img = document.querySelector(".cart-item__media");
+
         })
         .catch(err => {
           console.error('Error updating cart drawer:', err);
