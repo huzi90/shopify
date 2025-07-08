@@ -28,23 +28,9 @@
         .then(res => res.json())
         .then((sections) => {
           const cartDrawer = document.querySelector('cart-drawer');
-
-          if (cartDrawer && typeof cartDrawer.renderContents === 'function') {
             cartDrawer.renderContents({ sections });
 
-            // Wait until next animation frame for DOM to settle, then safely open drawer
-            requestAnimationFrame(() => {
-              const drawerContent =
-                cartDrawer.querySelector('#CartDrawer') ||
-                cartDrawer.querySelector('.drawer__inner');
-
-              if (drawerContent) {
-                cartDrawer.open(); // Safe manual open
-              } else {
-                console.warn("CartDrawer content not found, not opening.");
-              }
-            });
-          }
+          
         })
         .catch(err => {
           console.error('Error updating cart drawer:', err);
