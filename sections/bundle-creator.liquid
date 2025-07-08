@@ -1,12 +1,27 @@
-{% render 'bundle-creator' %}
-
+<div class="main-bundle">
+{% if section.settings.product %}
+{% render 'bundle-creator', product: section.settings.product  %}
+<button class="bundleBtn"></button>
+{% else %}
 <h3>
-    Bundle creator
+    Select a product
 </h3>
+{% endif %}
+</div>
 {% schema %}
 {
     "name": "Bundle",
-    "settings": [],
+    "settings": [
+        {
+            "type": "header",
+            "content": "Select a product"
+        },
+        {
+            "type": "product",
+            "id": "product",
+            "label": "Select a product"
+        }
+    ],
     "presets": [
         {
             "name": "Bundle"
