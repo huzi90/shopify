@@ -47,8 +47,8 @@
           }
         })
         .catch(err => {
-          console.error('Error updating cart drawer:', err);
-        });
-    });
-  });
-})();
+          console.error('Error updating cart drawer:', err)
+        })
+    })
+  })
+})()
