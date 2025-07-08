@@ -21,21 +21,22 @@
         })
       })
         .then(() => {
-          const img = document.querySelector(".cart-item__media");
-          console.log("img:", img);
-
           return fetch('/?sections=cart-drawer,cart-icon-bubble');
         })
         .then(res => res.json())
         .then((sections) => {
-          console.log("Fetched sections:", sections);
-          const cartDrawer = document.querySelector('cart-drawer');
-          cartDrawer.renderContents({ sections });
-          if (!cartDrawer.classList.contains("active")) {
-              cartDrawer.classList.add("active");
-            }           
-          cartDrawer.classList.remove("is-empty");
-            
+         const cartDrawerEl = document.querySelector('[data-cart-drawer]');
+          const cartIconBubbleEl = document.querySelector('[data-cart-icon-bubble]');
+
+          if (cartDrawerEl && sections['cart-drawer']) {
+            cartDrawerEl.innerHTML = sections['cart-drawer'];
+            cartDrawerEl.classList.add('active');
+            cartDrawerEl.classList.remove('is-empty');
+          }
+
+          if (cartIconBubbleEl && sections['cart-icon-bubble']) {
+            cartIconBubbleEl.innerHTML = sections['cart-icon-bubble'];
+          }
 
         })
         .catch(err => {
