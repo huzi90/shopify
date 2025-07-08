@@ -15,12 +15,13 @@
   })
   .then(response => response.json())
   .then(data => {
-    console.log('Added to cart:', data);
-    alert("Product added to cart!");
+    console.log('Added to cart:', data)
+    alert("Product added to cart!")
+    document.querySelector('cart-drawer')?.open();
   })
   .catch(error => {
-    console.error('Error adding to cart:', error);
-    alert("There was a problem adding the product to the cart.");
+    console.error('Error adding to cart:', error)
+    alert("There was a problem adding the product to the cart.")
   })
     })
   })
