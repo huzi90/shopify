@@ -1,3 +1,5 @@
-<div class="bundle-creator-main" id="bundleCreator" data-products='[{{ product.id }}]'>
+{% assign varId = product.variants.first.id %}
+
+<div class="bundle-creator-main" id="bundleCreator" data-products='[{{ varId }}]'>
     <p>product bundle is loading....</p>
 </div>
