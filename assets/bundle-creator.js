@@ -23,25 +23,18 @@
       })
         .then(response => response.json())
         .then(() => {
-          // Now fetch updated cart
-          return fetch('/cart.js');
+          // Refresh the cart drawer content
+          return fetch(window.location.href);
         })
-        .then(response => response.json())
-        .then(cart => {
-          const countBubble = document.querySelector('[data-cart-count]');
-          if (countBubble) {
-            countBubble.textContent = cart.item_count;
-            countBubble.classList.remove('hidden');
-          }
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const newCartDrawer = doc.querySelector('#CartDrawer');
+          const currentCartDrawer = document.querySelector('cart-drawer');
 
-          // Now force refresh cart drawer component
-          const drawer = document.querySelector('cart-drawer');
-          if (drawer) {
-            // This will force it to re-render using the latest cart state
-            drawer.fetchCartContents();
-          } else {
-            // fallback click if drawer not found
-            document.querySelector('.header__icon--cart')?.click();
+          if (newCartDrawer && currentCartDrawer) {
+            currentCartDrawer.innerHTML = newCartDrawer.innerHTML;
           }
         })
         .catch(err => {
