@@ -32,11 +32,18 @@
           const doc = parser.parseFromString(html, 'text/html');
           const newCartDrawer = doc.querySelector('#CartDrawer');
           const currentCartDrawer = document.querySelector('cart-drawer');
-         
+
           if (newCartDrawer && currentCartDrawer) {
             currentCartDrawer.innerHTML = newCartDrawer.innerHTML;
-             newCartDrawer.classList.remove("is-empty");
-          document.querySelector('.drawer__inner-empty').style.display = 'none';
+
+            // Remove "is-empty" class from the live cart drawer if it exists
+            currentCartDrawer.classList.remove("is-empty");
+
+            // Hide the empty message if it exists
+            const emptyMessage = currentCartDrawer.querySelector('.drawer__inner-empty');
+            if (emptyMessage) {
+              emptyMessage.style.display = 'none';
+            }
           }
         })
         .catch(err => {
