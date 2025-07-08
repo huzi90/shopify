@@ -10,21 +10,24 @@
       const productId = Number(bundleEl.dataset.products);
       if (!productId) return;
 
-      // Add product to cart
+      // Step 1: Add product to cart
       fetch('/cart/add.js', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           id: productId,
-          quantity: 1
-        })
+          quantity: 1,
+        }),
       })
-        .then(response => response.json())
-        .then(() => fetch(window.location.href)) // Fetch full page HTML
-        .then(res => res.text())
-        .then(html => {
+        .then((res) => res.json())
+        .then(() => {
+          // Step 2: Fetch /cart to get updated drawer + count + images
+          return fetch('/cart');
+        })
+        .then((res) => res.text())
+        .then((html) => {
           const parser = new DOMParser();
           const doc = parser.parseFromString(html, 'text/html');
 
@@ -39,10 +42,12 @@
             currentCartDrawer.classList.remove("is-empty");
             currentCartDrawer.classList.add("active");
 
-            // Force images to reload
+            // Force all images to reload
             const imgs = currentCartDrawer.querySelectorAll('img');
             imgs.forEach(img => {
-              if (img.src) img.src = img.src;
+              if (img.src) {
+                img.src = img.src; // force reload
+              }
             });
 
             // Hide empty message
@@ -50,13 +55,12 @@
             if (emptyMessage) emptyMessage.style.display = 'none';
           }
 
-          // Update cart count
           if (newCartCount && currentCartCount) {
             currentCartCount.textContent = newCartCount.textContent;
           }
         })
-        .catch(err => {
-          console.error("Error adding to cart:", err);
+        .catch((err) => {
+          console.error('Cart update failed:', err);
         });
     });
   });
