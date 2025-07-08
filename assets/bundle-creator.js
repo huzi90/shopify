@@ -23,9 +23,9 @@
         .then(() => {
           return fetch('/?sections=cart-drawer,cart-icon-bubble');
         })
-        .then(res => res.json())
-        .then((sections) => {
-          console.log("Fetched sections:", sections);
+        .then(res => res.text())
+        .then((text) => {
+          console.log("Fetched sections:", text);
           const cartDrawer = document.querySelector('cart-drawer');
             cartDrawer.renderContents({ sections });
             cartDrawer.classList.remove("is-empty")         
