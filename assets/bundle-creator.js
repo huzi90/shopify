@@ -1,7 +1,6 @@
 (() => {
   document.addEventListener("DOMContentLoaded", () => {
     const Btn = document.querySelector(".bundleBtn");
-
     if (!Btn) return;
 
     Btn.addEventListener("click", () => {
@@ -9,6 +8,7 @@
       if (!bundleEl) return;
 
       const productId = Number(bundleEl.dataset.products);
+      if (!productId) return;
 
       // Add product to cart
       fetch('/cart/add.js', {
@@ -22,10 +22,7 @@
         })
       })
         .then(response => response.json())
-        .then(() => {
-          // Refresh the cart drawer content
-          return fetch(window.location.href);
-        })
+        .then(() => fetch(window.location.href)) // Fetch full page HTML
         .then(res => res.text())
         .then(html => {
           const parser = new DOMParser();
@@ -39,17 +36,18 @@
 
           if (newCartDrawer && currentCartDrawer) {
             currentCartDrawer.innerHTML = newCartDrawer.innerHTML;
-
-            // Remove "is-empty" class if present
             currentCartDrawer.classList.remove("is-empty");
             currentCartDrawer.classList.add("active");
 
+            // Force images to reload
+            const imgs = currentCartDrawer.querySelectorAll('img');
+            imgs.forEach(img => {
+              if (img.src) img.src = img.src;
+            });
+
             // Hide empty message
             const emptyMessage = currentCartDrawer.querySelector('.drawer__inner-empty');
-            if (emptyMessage) {
-              emptyMessage.style.display = 'none';
-            }
-
+            if (emptyMessage) emptyMessage.style.display = 'none';
           }
 
           // Update cart count
@@ -58,7 +56,7 @@
           }
         })
         .catch(err => {
-          console.error("Error adding to cart", err);
+          console.error("Error adding to cart:", err);
         });
     });
   });
