@@ -99,10 +99,16 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "bundle_creator_zky7w4": {
+      "type": "bundle-creator",
+      "name": "Bundle",
+      "settings": {}
     }
   },
   "order": [
     "main",
-    "related-products"
+    "related-products",
+    "bundle_creator_zky7w4"
   ]
 }
