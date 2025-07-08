@@ -29,8 +29,7 @@
         .then((sections) => {
           const cartDrawer = document.querySelector('cart-drawer');
             cartDrawer.renderContents({ sections });
-
-          
+            cartDrawer.classList.remove("is-empty")         
         })
         .catch(err => {
           console.error('Error updating cart drawer:', err);
