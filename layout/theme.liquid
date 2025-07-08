@@ -374,6 +374,9 @@
     {%- endif -%}
     {% render 'mini-cart-drawer' %}
 <script src="{{ 'mini-cart.js' | asset_url }}" defer></script>
+{% if template == "product" %}
+  <script src="{{ 'bundle-creator.js' | asset_url }}" defer></script>
+{% endif %}
 
   </body>
 </html>

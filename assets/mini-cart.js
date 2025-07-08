@@ -1,6 +1,6 @@
 // cart-drawer.js - mini's safe mini cart drawer logic
 
-(function () {
+(function minicart() {
   const drawer = document.getElementById('mini-cart-drawer');
   const openBtn = document.querySelector('[data-mini-open-cart]');
   const closeBtn = document.getElementById('mini-close-drawer');
