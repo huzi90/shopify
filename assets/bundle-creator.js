@@ -21,6 +21,9 @@
         })
       })
         .then(() => {
+          const img = document.querySelector(".cart-item__media");
+          console.log("img:", img);
+
           return fetch('/?sections=cart-drawer,cart-icon-bubble');
         })
         .then(res => res.json())
@@ -32,8 +35,7 @@
               cartDrawer.classList.add("active");
             }           
           cartDrawer.classList.remove("is-empty");
-            const img = document.querySelector(".cart-item__media");
-            console.log("img :", img)
+            
 
         })
         .catch(err => {
