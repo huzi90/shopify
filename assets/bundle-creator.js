@@ -42,6 +42,7 @@
 
             // Remove "is-empty" class if present
             currentCartDrawer.classList.remove("is-empty");
+            currentCartDrawer.classList.add("active");
 
             // Hide empty message
             const emptyMessage = currentCartDrawer.querySelector('.drawer__inner-empty');
@@ -55,7 +56,6 @@
           if (newCartCount && currentCartCount) {
             currentCartCount.textContent = newCartCount.textContent;
           }
-          document.getElementById("cart-icon-bubble")?.click()
         })
         .catch(err => {
           console.error("Error adding to cart", err);
