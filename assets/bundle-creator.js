@@ -32,9 +32,13 @@
           const doc = parser.parseFromString(html, 'text/html');
           const newCartDrawer = doc.querySelector('#CartDrawer');
           const currentCartDrawer = document.querySelector('cart-drawer');
-
+         
           if (newCartDrawer && currentCartDrawer) {
             currentCartDrawer.innerHTML = newCartDrawer.innerHTML;
+             newCartDrawer.classList.remove("is-empty");
+          document.querySelectorAll('.drawer__inner-empty').forEach(el => {
+            el.style.display = 'none';
+            });
           }
         })
         .catch(err => {
